@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="lawly-db",
+    name="lawly_db",
     version="0.1.0",
     author="VanekForest",
     author_email="zazc256@gmail.com",
