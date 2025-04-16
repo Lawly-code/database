@@ -4,8 +4,8 @@ from sqlalchemy import BigInteger, DateTime, Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Enum as SQLAlchemyEnum
 
-from db_models.db_session import Base
-from models.enum_models import PaymentStatusEnum
+from .db_session import Base
+from .enum_models import PaymentStatusEnum
 
 
 class Payment(Base):

@@ -1,7 +1,7 @@
 from sqlalchemy import BigInteger, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from db_models.db_session import Base
+from .db_session import Base
 
 
 class Document(Base):
@@ -12,4 +12,4 @@ class Document(Base):
     link: Mapped[str] = mapped_column(String, nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=False)
 
-    fields: Mapped[list["DocumentField"]] = mapped_column("fields", back_populates="document", lazy="selectin")
+    fields: Mapped[list["DocumentField"]] = relationship("fields", back_populates="document", lazy="selectin")

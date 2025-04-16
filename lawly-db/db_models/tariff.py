@@ -1,7 +1,7 @@
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
-from db_models.db_session import Base
+from .db_session import Base
 
 
 class Tariff(Base):

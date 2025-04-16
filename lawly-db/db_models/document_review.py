@@ -4,8 +4,8 @@ from sqlalchemy import BigInteger, ForeignKey, String, DateTime
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy import Enum as SQLAlchemyEnum
 
-from db_models.db_session import Base
-from models.enum_models import DocumentReviewStatusEnum
+from .db_session import Base
+from .enum_models import DocumentReviewStatusEnum
 
 
 class DocumentReview(Base):

@@ -4,12 +4,13 @@ from sqlalchemy import BigInteger, ForeignKey, DateTime, String
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 
-from db_models.db_session import Base
+from .db_session import Base
 from sqlalchemy import Enum as SQLAlchemyEnum
-from models.enum_models import DocumentStatusEnum
+from .enum_models import DocumentStatusEnum
 
 
 class DocumentCreation(Base):
+    __tablename__ = "document_creations"
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     template_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("templates.id", ondelete="CASCADE"), nullable=True,

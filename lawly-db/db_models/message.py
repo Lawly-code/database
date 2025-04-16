@@ -4,8 +4,8 @@ from sqlalchemy import BigInteger, ForeignKey, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Enum as SQLAlchemyEnum
 
-from db_models.db_session import Base
-from models.enum_models import ChatTypeEnum, MessageSenderTypeEnum, MessageStatusEnum
+from .db_session import Base
+from .enum_models import ChatTypeEnum, MessageSenderTypeEnum, MessageStatusEnum
 
 
 class Message(Base):

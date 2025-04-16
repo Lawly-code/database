@@ -3,8 +3,8 @@ from datetime import datetime
 from sqlalchemy import BigInteger, DateTime, String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
-from db_models.db_session import Base
-from models.enum_models import LawyerRequestStatusEnum
+from .db_session import Base
+from .enum_models import LawyerRequestStatusEnum
 from sqlalchemy import Enum as SQLAlchemyEnum
 
 

@@ -3,8 +3,8 @@ from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 from sqlalchemy import Enum as SQLAlchemyEnum
 
-from db_models.db_session import Base
-from models.enum_models import FieldTypeENum
+from .db_session import Base
+from .enum_models import FieldTypeENum
 
 
 class Field(Base):

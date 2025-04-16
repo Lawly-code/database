@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import BigInteger, ForeignKey, DateTime, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from db_models.db_session import Base
+from .db_session import Base
 
 
 class Subscribe(Base):
