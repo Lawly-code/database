@@ -1,5 +1,6 @@
 from functools import wraps
 from os import environ
+from typing import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import declarative_base
@@ -52,6 +53,12 @@ async def global_init():
 def create_session() -> AsyncSession:
     global __factory
     return __factory()  # noqa
+
+
+async def get_session() -> AsyncGenerator[AsyncSession, None]:
+    global __factory
+    async with __factory() as session:
+        yield session
 
 
 def session_db(func):
