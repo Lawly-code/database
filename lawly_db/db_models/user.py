@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import BigInteger, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from db_models.db_session import Base
+from .db_session import Base
 
 
 class User(Base):
@@ -14,7 +14,6 @@ class User(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
 
-    templates: Mapped[list["Template"]] = relationship("Template", back_populates="user")
     documents_creation: Mapped[list["DocumentCreation"]] = relationship("DocumentCreation", back_populates="user")
     messages: Mapped[list["Message"]] = relationship("Message", back_populates="user", lazy="selectin")
     subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe", back_populates="user", lazy="selectin")
