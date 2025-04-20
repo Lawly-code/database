@@ -14,8 +14,9 @@ class RefreshSession(Base):
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("users.id"), nullable=False)
     refresh_token: Mapped[uuid.UUID]
-    user_agent: Mapped[str] = mapped_column(String(200))
-    fingerprint: Mapped[str] = mapped_column(String(200))
+    device_os: Mapped[str] = mapped_column(String)
+    device_name: Mapped[str] = mapped_column(String)
+    device_id: Mapped[str] = mapped_column(String)
     ip: Mapped[Optional[str]] = mapped_column(String(15))
     expires_in: Mapped[int] = mapped_column(BigInteger)
     created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=func.now())
