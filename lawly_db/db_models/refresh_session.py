@@ -11,7 +11,7 @@ from .db_session import Base
 class RefreshSession(Base):
     __tablename__ = "refresh_sessions"
 
-    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, autoincrement=True)
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("users.id"), nullable=False)
     refresh_token: Mapped[uuid.UUID]
     device_os: Mapped[str] = mapped_column(String)
