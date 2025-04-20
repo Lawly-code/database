@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import BigInteger, String, DateTime
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .db_session import Base
@@ -19,3 +20,7 @@ class User(Base):
     subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe", back_populates="user", lazy="selectin")
     payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="user", lazy="selectin")
     lawyer: Mapped["Lawyer"] = relationship("Lawyer", back_populates="user", uselist=False, lazy="selectin")
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

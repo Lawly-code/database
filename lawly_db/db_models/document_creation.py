@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import BigInteger, ForeignKey, DateTime, String
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 
@@ -23,3 +24,7 @@ class DocumentCreation(Base):
 
     template: Mapped["Template"] = relationship("Template", back_populates="documents", lazy="selectin")
     user: Mapped["User"] = relationship("User", back_populates="documents_creation", lazy="selectin")
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

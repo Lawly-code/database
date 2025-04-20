@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Optional
 
 from sqlalchemy import BigInteger, ForeignKey, String, TIMESTAMP, func
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .db_session import Base
@@ -20,3 +21,7 @@ class RefreshSession(Base):
     ip: Mapped[Optional[str]] = mapped_column(String(15))
     expires_in: Mapped[int] = mapped_column(BigInteger)
     created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=func.now())
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

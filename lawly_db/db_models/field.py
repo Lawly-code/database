@@ -1,4 +1,5 @@
 from sqlalchemy import BigInteger, String, ForeignKey
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 from sqlalchemy import Enum as SQLAlchemyEnum
@@ -18,3 +19,7 @@ class Field(Base):
 
     template: Mapped["Template"] = relationship("Template", back_populates="fields", lazy="selectin")
     document: Mapped["DocumentCreation"] = relationship("DocumentCreation", back_populates="fields", lazy="selectin")
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

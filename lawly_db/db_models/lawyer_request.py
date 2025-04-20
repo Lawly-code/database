@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import BigInteger, DateTime, String, ForeignKey
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .db_session import Base
@@ -21,3 +22,7 @@ class LawyerRequest(Base):
     document_url: Mapped[str] = mapped_column(String)
     estimated_response_time: Mapped[datetime] = mapped_column(DateTime, default=None, nullable=True)
     note: Mapped[str] = mapped_column(String, default=None, nullable=True)
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

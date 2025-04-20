@@ -1,4 +1,5 @@
 from sqlalchemy import Integer, String
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .db_session import Base
@@ -15,3 +16,7 @@ class Tariff(Base):
     ai_access: Mapped[bool] = mapped_column(default=False)
     custom_templates: Mapped[bool] = mapped_column(default=False)
     unlimited_docs: Mapped[bool] = mapped_column(default=False)
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

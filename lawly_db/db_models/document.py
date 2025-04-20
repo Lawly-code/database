@@ -1,4 +1,5 @@
 from sqlalchemy import BigInteger, String
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .db_session import Base
@@ -13,3 +14,7 @@ class Document(Base):
     description: Mapped[str] = mapped_column(String, nullable=False)
 
     fields: Mapped[list["DocumentField"]] = relationship("fields", back_populates="document", lazy="selectin")
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

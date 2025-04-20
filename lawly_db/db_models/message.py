@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import BigInteger, ForeignKey, String, DateTime
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Enum as SQLAlchemyEnum
 
@@ -22,3 +23,7 @@ class Message(Base):
     read_at: Mapped[datetime] = mapped_column(DateTime, default=None, nullable=True)
 
     user: Mapped["User"] = relationship("User", back_populates="messages", lazy="selectin")
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

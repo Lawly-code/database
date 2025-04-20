@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import BigInteger, ForeignKey, String, DateTime
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy import Enum as SQLAlchemyEnum
 
@@ -21,3 +22,7 @@ class DocumentReview(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     feedback: Mapped[str] = mapped_column(String, default=None, nullable=True)
     corrected_document_url: Mapped[str] = mapped_column(String, default=None, nullable=True)
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

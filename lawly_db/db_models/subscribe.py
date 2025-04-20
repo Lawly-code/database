@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import BigInteger, ForeignKey, DateTime, Integer
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .db_session import Base
@@ -23,3 +24,7 @@ class Subscribe(Base):
 
     user: Mapped["User"] = relationship("User", back_populates="subscribes", lazy="selectin")
     payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="subscribe", lazy="selectin")
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()

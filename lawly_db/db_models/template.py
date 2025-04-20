@@ -1,4 +1,5 @@
 from sqlalchemy import String, ForeignKey, BigInteger
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 
@@ -16,3 +17,7 @@ class Template(Base):
     documents: Mapped[list["DocumentCreation"]] = relationship("DocumentCreation", back_populates="template",
                                                                lazy="selectin")
     fields: Mapped[list["Field"]] = relationship("Field", back_populates="template", lazy="selectin")
+
+    async def save(self, session: AsyncSession):
+        session.add(self)
+        await session.commit()
