@@ -59,11 +59,6 @@ async def get_session() -> AsyncGenerator[AsyncSession, None]:
     async with __factory() as session:
         yield session
 
-async def get_session() -> AsyncGenerator[AsyncSession, None]:
-    global __factory
-    async with __factory() as session:
-        yield session
-
 
 def session_db(func):
     @wraps(func)
