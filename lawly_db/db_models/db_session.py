@@ -54,6 +54,10 @@ def create_session() -> AsyncSession:
     global __factory
     return __factory()  # noqa
 
+async def get_session() -> AsyncGenerator[AsyncSession, None]:
+    global __factory
+    async with __factory() as session:
+        yield session
 
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
     global __factory

@@ -17,4 +17,4 @@ class Field(Base):
     template_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("templates.id"), nullable=False)
 
     template: Mapped["Template"] = relationship("Template", back_populates="fields", lazy="selectin")
-    document: Mapped["DocumentCreation"] = relationship("DocumentCreation", back_populates="fields", lazy="selectin")
+    document: Mapped["Document"] = relationship("Document", back_populates="fields", lazy="selectin")
