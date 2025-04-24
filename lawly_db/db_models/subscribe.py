@@ -23,3 +23,4 @@ class Subscribe(Base):
 
     user: Mapped["User"] = relationship("User", back_populates="subscribes", lazy="selectin")
     payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="subscribe", lazy="selectin")
+    tariff: Mapped["Tariff"] = relationship("Tariff", back_populates="subscribes", lazy="selectin")
