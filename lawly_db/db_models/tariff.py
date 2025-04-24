@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .db_session import Base
 
@@ -16,3 +16,5 @@ class Tariff(Base):
     ai_access: Mapped[bool] = mapped_column(default=False)
     custom_templates: Mapped[bool] = mapped_column(default=False)
     unlimited_docs: Mapped[bool] = mapped_column(default=False)
+
+    subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe", back_populates="tariff", lazy="selectin")
