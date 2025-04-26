@@ -17,4 +17,6 @@ class Tariff(Base):
     custom_templates: Mapped[bool] = mapped_column(default=False)
     unlimited_docs: Mapped[bool] = mapped_column(default=False)
 
-    subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe", back_populates="tariff", lazy="selectin")
+    subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe", back_populates="tariff",
+                                                         cascade="all, delete-orphan",
+                                                         passive_deletes=True, lazy="selectin")
