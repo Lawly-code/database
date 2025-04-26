@@ -12,4 +12,5 @@ class Document(Base):
     link: Mapped[str] = mapped_column(String, nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=False)
 
-    fields: Mapped[list["Field"]] = relationship("Field", back_populates="document", lazy="selectin")
+    fields: Mapped[list["Field"]] = relationship("Field", back_populates="document", cascade="all, delete-orphan",
+                                                 passive_deletes=True, lazy="selectin")

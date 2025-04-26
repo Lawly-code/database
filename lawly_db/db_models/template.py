@@ -14,5 +14,8 @@ class Template(Base):
     image_url: Mapped[str] = mapped_column(String, nullable=False)
 
     documents: Mapped[list["DocumentCreation"]] = relationship("DocumentCreation", back_populates="template",
+                                                               cascade="all, delete-orphan",
+                                                               passive_deletes=True,
                                                                lazy="selectin")
-    fields: Mapped[list["Field"]] = relationship("Field", back_populates="template", lazy="selectin")
+    fields: Mapped[list["Field"]] = relationship("Field", back_populates="template", cascade="all, delete-orphan",
+                                                 passive_deletes=True, lazy="selectin")

@@ -14,8 +14,17 @@ class User(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
 
-    documents_creation: Mapped[list["DocumentCreation"]] = relationship("DocumentCreation", back_populates="user")
-    messages: Mapped[list["Message"]] = relationship("Message", back_populates="user", lazy="selectin")
-    subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe", back_populates="user", lazy="selectin")
-    payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="user", lazy="selectin")
-    lawyer: Mapped["Lawyer"] = relationship("Lawyer", back_populates="user", uselist=False, lazy="selectin")
+    documents_creation: Mapped[list["DocumentCreation"]] = relationship("DocumentCreation",
+                                                                        cascade="all, delete-orphan",
+                                                                        passive_deletes=True, back_populates="user",
+                                                                        lazy="selectin")
+    messages: Mapped[list["Message"]] = relationship("Message", back_populates="user", cascade="all, delete-orphan",
+                                                     passive_deletes=True, lazy="selectin")
+    subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe", back_populates="user",
+                                                         cascade="all, delete-orphan",
+                                                         passive_deletes=True, lazy="selectin")
+    payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="user", cascade="all, delete-orphan",
+                                                     passive_deletes=True, lazy="selectin")
+    lawyer: Mapped["Lawyer"] = relationship("Lawyer", back_populates="user", uselist=False,
+                                            cascade="all, delete-orphan",
+                                            passive_deletes=True, lazy="selectin")
