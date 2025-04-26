@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="lawly_db",
-    version="0.2.2",
+    version="0.2.3",
     author="VanekForest",
     author_email="zazc256@gmail.com",
     description="База данных для сайта Lawly",
