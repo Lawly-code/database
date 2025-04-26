@@ -20,11 +20,8 @@ class User(Base):
                                                                         lazy="selectin")
     messages: Mapped[list["Message"]] = relationship("Message", back_populates="user", cascade="all, delete-orphan",
                                                      passive_deletes=True, lazy="selectin")
-    subscribes: Mapped["Subscribe"] = relationship("Subscribe", back_populates="user",
+    subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe", back_populates="user",
                                                          cascade="all, delete-orphan",
                                                          passive_deletes=True, lazy="selectin")
     payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="user", cascade="all, delete-orphan",
                                                      passive_deletes=True, lazy="selectin")
-    lawyer: Mapped["Lawyer"] = relationship("Lawyer", back_populates="user", uselist=False,
-                                            cascade="all, delete-orphan",
-                                            passive_deletes=True, lazy="selectin")
