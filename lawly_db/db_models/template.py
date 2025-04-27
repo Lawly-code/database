@@ -12,6 +12,8 @@ class Template(Base):
     name_ru: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=False)
     image_url: Mapped[str] = mapped_column(String, nullable=False)
+    download_url: Mapped[str] = mapped_column(String, nullable=False)
+
 
     documents: Mapped[list["DocumentCreation"]] = relationship("DocumentCreation", back_populates="template",
                                                                cascade="all, delete-orphan",
