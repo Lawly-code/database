@@ -21,5 +21,15 @@ class DocumentCreation(Base):
     custom_name: Mapped[str] = mapped_column(String, nullable=True, default=None)
     error_message: Mapped[str] = mapped_column(String, nullable=True, default=None)
 
-    template: Mapped["Template"] = relationship("Template", back_populates="documents", lazy="selectin")
-    user: Mapped["User"] = relationship("User", back_populates="documents_creation", lazy="selectin")
+    template: Mapped["Template"] = relationship(
+        "Template",
+        back_populates="document_creations",
+        lazy="selectin",
+        passive_deletes=True,  # оставить passive_deletes!
+    )
+    user: Mapped["User"] = relationship(
+        "User",
+        back_populates="documents_creation",
+        lazy="selectin",
+        passive_deletes=True  # оставь это, ок
+    )

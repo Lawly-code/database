@@ -4,7 +4,7 @@ from .tariff import Tariff
 from .subscribe import Subscribe
 from .payment import Payment
 from .message import Message
-from .lawyer import Lawyer
+from .lawyers import Lawyer
 from .lawyer_request import LawyerRequest
 from .field import Field
 from .document_review import DocumentReview

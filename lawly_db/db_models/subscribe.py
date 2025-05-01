@@ -22,6 +22,4 @@ class Subscribe(Base):
     unlimited_documents: Mapped[bool] = mapped_column(default=False)
 
     user: Mapped["User"] = relationship("User", back_populates="subscribes", lazy="selectin")
-    payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="subscribe", cascade="all, delete-orphan",
-                                                         passive_deletes=True, lazy="selectin")
-    tariff: Mapped["Tariff"] = relationship("Tariff", back_populates="subscribes", lazy="selectin")
+    payments: Mapped[list["Payment"]] = relationship("Payment", back_populates="subscribe", lazy="selectin")
