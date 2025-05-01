@@ -2,7 +2,9 @@ from enum import Enum
 
 
 class DocumentStatusEnum(str, Enum):
-    ACTIVE = "active"
+    STARTED = "started"
+    COMPLETED = "completed"
+    ERROR = "error"
 
 
 class ChatTypeEnum(str, Enum):
