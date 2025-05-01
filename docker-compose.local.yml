@@ -1,0 +1,6 @@
+services:
+  migration:
+    build: .
+    network_mode: "host"
+    env_file:
+      - alembic/.env

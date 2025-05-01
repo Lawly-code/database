@@ -1,0 +1,12 @@
+services:
+  migration:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - alembic/.env
+
+networks:
+  lawly_db:
+    external: true
