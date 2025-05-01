@@ -12,3 +12,5 @@ class Lawyer(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
+
+    user: Mapped["User"] = relationship("User", back_populates="lawyer", lazy="selectin")
