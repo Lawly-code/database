@@ -1,12 +1,6 @@
 services:
   migration:
     build: .
-    depends_on:
-      db:
-        condition: service_healthy
+    network_mode: "host"
     env_file:
       - alembic/.env
-
-networks:
-  lawly_db:
-    external: true
