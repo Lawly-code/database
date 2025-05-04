@@ -9,15 +9,20 @@ class DocumentStatusEnum(str, Enum):
 
 
 class ChatTypeEnum(str, Enum):
-    TYPE = "type"
+    AI = "ai"
+    LAWYER = "lawyer"
 
 
 class MessageSenderTypeEnum(str, Enum):
-    SENDER_TYPE = "sender_type"
+    USER = "user"
+    AI = "ai"
+    LAWYER = "lawyer"
 
 
 class MessageStatusEnum(str, Enum):
     SENT = "sent"
+    ERROR = "error"
+    READ = "read"
 
 
 class PaymentStatusEnum(str, Enum):
@@ -26,7 +31,9 @@ class PaymentStatusEnum(str, Enum):
 
 class LawyerRequestStatusEnum(str, Enum):
     PENDING = "pending"
+    COMPLETED = "completed"
 
 
 class DocumentReviewStatusEnum(str, Enum):
     PENDING = "pending"
+    COMPLETED = "completed"

@@ -40,9 +40,9 @@ async def global_init():
 
     engine = create_async_engine(conn_str, pool_pre_ping=True)
 
-    async with engine.begin() as conn:
-        # await conn.run_sync(SqlAlchemyBase.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
+    # async with engine.begin() as conn:
+    #     # await conn.run_sync(SqlAlchemyBase.metadata.drop_all)
+    #     await conn.run_sync(Base.metadata.create_all)
 
     __factory = async_sessionmaker(
         engine, expire_on_commit=False
