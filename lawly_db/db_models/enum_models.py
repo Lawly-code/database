@@ -5,6 +5,7 @@ class DocumentStatusEnum(str, Enum):
     STARTED = "started"
     COMPLETED = "completed"
     ERROR = "error"
+    PROCESSING = "processing"
 
 
 class ChatTypeEnum(str, Enum):
@@ -23,11 +24,9 @@ class PaymentStatusEnum(str, Enum):
     PAID = "paid"
 
 
-class FieldTypeENum(str, Enum):
-    TYPE = "type"
-
 class LawyerRequestStatusEnum(str, Enum):
     PENDING = "pending"
+
 
 class DocumentReviewStatusEnum(str, Enum):
     PENDING = "pending"
