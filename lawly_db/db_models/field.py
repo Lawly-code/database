@@ -11,6 +11,7 @@ class Field(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     name_ru: Mapped[str] = mapped_column(String(255), nullable=False)
+    example: Mapped[str] = mapped_column(String, nullable=True)
     mask: Mapped[str] = mapped_column(String(255), nullable=True)
     filter_field: Mapped[dict] = mapped_column(JSON, nullable=True)
     can_improve_ai: Mapped[bool] = mapped_column(default=False)
