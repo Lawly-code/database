@@ -10,6 +10,7 @@ class Tariff(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=True)
+    is_base: Mapped[bool] = mapped_column(default=False)
     features: Mapped[list[str]] = mapped_column(ARRAY(VARCHAR), default=[])
     price: Mapped[int] = mapped_column(Integer, nullable=False)
     consultations_count: Mapped[int] = mapped_column(Integer, default=0)
