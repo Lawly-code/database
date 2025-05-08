@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, String, ForeignKey
+from sqlalchemy import BigInteger, String, ForeignKey, JSON
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 
@@ -11,7 +11,9 @@ class Field(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     name_ru: Mapped[str] = mapped_column(String(255), nullable=False)
-    type: Mapped[str] = mapped_column(String, nullable=False)
+    mask: Mapped[str] = mapped_column(String(255), nullable=True)
+    filter_field: Mapped[dict] = mapped_column(JSON, nullable=True)
+    can_improve_ai: Mapped[bool] = mapped_column(default=False)
     document_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("documents.id"), nullable=True)
     template_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("templates.id"), nullable=True)
 
