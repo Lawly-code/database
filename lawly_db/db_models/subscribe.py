@@ -6,7 +6,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .db_session import Base
 
 
-
 class Subscribe(Base):
     __tablename__ = "subscribes"
 
@@ -27,6 +26,7 @@ class Subscribe(Base):
         "User",
         back_populates="subscribes",
         lazy="selectin",
+        passive_deletes=True
     )
 
     payments: Mapped[list["Payment"]] = relationship(

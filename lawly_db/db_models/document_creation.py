@@ -25,11 +25,11 @@ class DocumentCreation(Base):
         "Template",
         back_populates="document_creations",
         lazy="selectin",
-        passive_deletes=True,  # оставить passive_deletes!
+        passive_deletes=True
     )
     user: Mapped["User"] = relationship(
         "User",
         back_populates="documents_creation",
         lazy="selectin",
-        passive_deletes=True  # оставь это, ок
+        passive_deletes=True
     )
