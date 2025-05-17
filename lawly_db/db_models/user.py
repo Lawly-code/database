@@ -21,7 +21,6 @@ class User(Base):
         lazy="selectin",
         passive_deletes=True
     )
-    messages: Mapped[list["Message"]] = relationship("Message", back_populates="user", lazy="selectin")
     subscribes: Mapped[list["Subscribe"]] = relationship("Subscribe",
                                                          back_populates="user",
                                                          cascade="all, delete-orphan",

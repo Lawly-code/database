@@ -16,9 +16,10 @@ class Message(Base):
     chat_type: Mapped[ChatTypeEnum] = mapped_column(SQLAlchemyEnum(ChatTypeEnum), nullable=False)
     sender_type: Mapped[MessageSenderTypeEnum] = mapped_column(SQLAlchemyEnum(MessageSenderTypeEnum), nullable=False)
     sender_id: Mapped[int] = mapped_column(BigInteger, nullable=True, default=None)
+    document_url: Mapped[str] = mapped_column(String, default=None, nullable=True)
     text: Mapped[str] = mapped_column(String, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     status: Mapped[MessageStatusEnum] = mapped_column(SQLAlchemyEnum(MessageStatusEnum), default=MessageStatusEnum.SENT)
     read_at: Mapped[datetime] = mapped_column(DateTime, default=None, nullable=True)
 
-    user: Mapped["User"] = relationship("User", back_populates="messages", lazy="selectin")
+    user: Mapped["User"] = relationship("User", lazy="selectin")

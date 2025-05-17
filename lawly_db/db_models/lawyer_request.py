@@ -17,7 +17,5 @@ class LawyerRequest(Base):
                                                             default=LawyerRequestStatusEnum.PENDING)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
-    document_content: Mapped[str] = mapped_column(String)
     document_url: Mapped[str] = mapped_column(String)
-    estimated_response_time: Mapped[datetime] = mapped_column(DateTime, default=None, nullable=True)
     note: Mapped[str] = mapped_column(String, default=None, nullable=True)
