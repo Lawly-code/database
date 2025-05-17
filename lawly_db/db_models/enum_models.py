@@ -31,6 +31,7 @@ class PaymentStatusEnum(str, Enum):
 
 class LawyerRequestStatusEnum(str, Enum):
     PENDING = "pending"
+    PROCESSING = "processing"
     COMPLETED = "completed"
 
 
