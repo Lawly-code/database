@@ -12,3 +12,4 @@ from .document_creation import DocumentCreation
 from .document import Document
 from .refresh_session import RefreshSession
 from .fcm_token import FCMToken
+from .refresh_session_lawyer import RefreshSessionLawyer
