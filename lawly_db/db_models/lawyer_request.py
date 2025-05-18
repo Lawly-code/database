@@ -12,7 +12,7 @@ class LawyerRequest(Base):
     __tablename__ = "lawyer_requests"
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
-    lawyer_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("lawyers.id", ondelete="CASCADE"), nullable=False)
+    lawyer_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("lawyers.id", ondelete="CASCADE"), nullable=True)
     status: Mapped[LawyerRequestStatusEnum] = mapped_column(SQLAlchemyEnum(LawyerRequestStatusEnum),
                                                             default=LawyerRequestStatusEnum.PENDING)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
