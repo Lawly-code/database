@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import BigInteger, ForeignKey, DateTime, String
+from sqlalchemy import BigInteger, ForeignKey, DateTime, String, TIMESTAMP, func
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 
@@ -16,7 +16,7 @@ class DocumentCreation(Base):
     template_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("templates.id", ondelete="CASCADE"), nullable=True,
                                              default=None)
     status: Mapped[DocumentStatusEnum] = mapped_column(SQLAlchemyEnum(DocumentStatusEnum), nullable=False)
-    start_date: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
+    start_date: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=func.now())
     end_date: Mapped[datetime] = mapped_column(DateTime, default=None, nullable=True)
     custom_name: Mapped[str] = mapped_column(String, nullable=True, default=None)
     error_message: Mapped[str] = mapped_column(String, nullable=True, default=None)

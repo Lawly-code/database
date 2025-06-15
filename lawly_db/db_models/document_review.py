@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import BigInteger, ForeignKey, String, DateTime
+from sqlalchemy import BigInteger, ForeignKey, String, DateTime, TIMESTAMP, func
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy import Enum as SQLAlchemyEnum
 
@@ -17,7 +17,7 @@ class DocumentReview(Base):
     document_url: Mapped[str] = mapped_column(String, nullable=False)
     status: Mapped[DocumentReviewStatusEnum] = mapped_column(SQLAlchemyEnum(DocumentReviewStatusEnum),
                                                              default=DocumentReviewStatusEnum.PENDING)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
-    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
+    created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=func.now())
     feedback: Mapped[str] = mapped_column(String, default=None, nullable=True)
     corrected_document_url: Mapped[str] = mapped_column(String, default=None, nullable=True)
