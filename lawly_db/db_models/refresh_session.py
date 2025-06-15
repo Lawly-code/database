@@ -17,6 +17,7 @@ class RefreshSession(Base):
     device_os: Mapped[str] = mapped_column(String)
     device_name: Mapped[str] = mapped_column(String)
     device_id: Mapped[str] = mapped_column(String)
+    application_version: Mapped[str] = mapped_column(String, nullable=False)
     ip: Mapped[Optional[str]] = mapped_column(String(15))
     expires_in: Mapped[int] = mapped_column(BigInteger)
     created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=func.now())

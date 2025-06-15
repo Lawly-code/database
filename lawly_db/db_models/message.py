@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import BigInteger, ForeignKey, String, DateTime
+from sqlalchemy import BigInteger, ForeignKey, String, DateTime, TIMESTAMP, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Enum as SQLAlchemyEnum
 
@@ -17,7 +17,7 @@ class Message(Base):
     sender_type: Mapped[MessageSenderTypeEnum] = mapped_column(SQLAlchemyEnum(MessageSenderTypeEnum), nullable=False)
     sender_id: Mapped[int] = mapped_column(BigInteger, nullable=True, default=None)
     text: Mapped[str] = mapped_column(String, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
+    created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), server_default=func.now())
     status: Mapped[MessageStatusEnum] = mapped_column(SQLAlchemyEnum(MessageStatusEnum), default=MessageStatusEnum.SENT)
     read_at: Mapped[datetime] = mapped_column(DateTime, default=None, nullable=True)
 
